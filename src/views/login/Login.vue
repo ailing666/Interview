@@ -54,7 +54,7 @@
           <br />
           <el-button class="login-left-body-button" type="primary" @click="changeDialogVisible">注册</el-button>
         </el-form>
-        <Request ref="request"></Request>
+        <Register ref="register"></Register>
       </div>
     </div>
     <div class="login-right">
@@ -64,9 +64,9 @@
 </template>
 
 <script>
-import Request from "@/views/login/Request";
+import Register from "@/views/login/Register";
 export default {
-  components: { Request },
+  components: { Register },
   data() {
     return {
       imgCodeUrl: process.env.VUE_APP_URL + "/captcha?type=login",
@@ -129,7 +129,7 @@ export default {
         process.env.VUE_APP_URL + "/captcha?type=login&t=" + Date.now();
     },
     changeDialogVisible() {
-      this.$refs.request.dialogVisible = true;
+      this.$refs.register.dialogVisible = true;
     }
   }
 };

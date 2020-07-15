@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 
 // 4.导入子组件
 import Login from '@/views/login/Login.vue';
-import Request from '@/views/login/Request.vue'
+import Register from '@/views/login/Register.vue'
 // 3.实例化
 const router = new VueRouter({
   routes: [
@@ -16,8 +16,8 @@ const router = new VueRouter({
       component: Login
     },
     {
-      path: '/Request',
-      component: Request
+      path: '/Register',
+      component: Register
     }
   ]
 })
