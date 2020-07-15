@@ -8,18 +8,20 @@
         <h5 class="login-left-header-t2">用户登录</h5>
       </div>
       <div class="login-left-body">
-      <!-- 
+        <!-- 
         :model->绑定表单的值,form是个对象
         :rules->绑定表单的验证规则
         ref:父子组件传值
         prefix-icon:输入框头部图标
         show-password:是否显示密码
         prop:在需要验证的子项上绑定prop值,对应input的v-model值
-       -->
+        -->
         <el-form :model="form" :rules="rules" ref="form">
+          <!-- 手机 -->
           <el-form-item prop="phone">
             <el-input v-model="form.phone" placeholder="请输入手机号" prefix-icon="el-icon-user"></el-input>
           </el-form-item>
+          <!-- 密码 -->
           <el-form-item prop="password">
             <el-input
               v-model="form.password"
@@ -28,16 +30,18 @@
               show-password
             ></el-input>
           </el-form-item>
+          <!-- 验证码 -->
           <el-form-item prop="code">
             <el-row>
               <el-col :span="16">
                 <el-input v-model="form.code" placeholder="请输入验证码" prefix-icon="el-icon-key"></el-input>
               </el-col>
               <el-col :span="8">
-                <img class="login-left-body-code" src="@/assets/code.jpg" alt />
+                <img class="login-left-body-code" @click="changeCode" :src="imgCodeUrl" alt />
               </el-col>
             </el-row>
           </el-form-item>
+          <!-- 用户协议 -->
           <el-form-item prop="isPass">
             <el-checkbox v-model="form.isPass">
               我已阅读并同意
@@ -62,6 +66,7 @@
 export default {
   data() {
     return {
+      imgCodeUrl: process.env.VUE_APP_URL + "/captcha?type=login",
       form: {
         phone: "", //是	string	手机号
         password: "", //是	string	密码
@@ -114,6 +119,11 @@ export default {
           this.$message.error("错误的!");
         }
       });
+    },
+    // 点击图片切换验证码
+    changeCode() {
+      this.imgCodeUrl =
+        process.env.VUE_APP_URL + "/captcha?type=login&t=" + Date.now();
     }
   }
 };
@@ -165,7 +175,8 @@ export default {
     }
     .login-left-body {
       .login-left-body-code {
-        width: 110px;
+        width: 100%;
+        height: 40px;
       }
       .login-left-body-button {
         width: 100%;
