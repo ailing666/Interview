@@ -9,4 +9,6 @@ export default {};
 </script>
 
 <style>
+/* 导入基本样式 */
+@import url(~@/style/base.css);
 </style>
