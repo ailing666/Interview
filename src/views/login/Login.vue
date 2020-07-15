@@ -52,8 +52,9 @@
           <el-button class="login-left-body-button" type="primary" @click="submit">登录</el-button>
           <br />
           <br />
-          <el-button class="login-left-body-button" type="primary">注册</el-button>
+          <el-button class="login-left-body-button" type="primary" @click="changeDialogVisible">注册</el-button>
         </el-form>
+        <Request ref="request"></Request>
       </div>
     </div>
     <div class="login-right">
@@ -63,7 +64,9 @@
 </template>
 
 <script>
+import Request from "@/views/login/Request";
 export default {
+  components: { Request },
   data() {
     return {
       imgCodeUrl: process.env.VUE_APP_URL + "/captcha?type=login",
@@ -124,6 +127,9 @@ export default {
     changeCode() {
       this.imgCodeUrl =
         process.env.VUE_APP_URL + "/captcha?type=login&t=" + Date.now();
+    },
+    changeDialogVisible() {
+      this.$refs.request.dialogVisible = true;
     }
   }
 };
