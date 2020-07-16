@@ -2,12 +2,13 @@
 import axios from 'axios'
 
 // 2.创建axios副本
-let _fecth = axios.create({
-  baseurl: process.env.VUE_APP_URL
+let _fetch = axios.create({
+  baseURL: process.env.VUE_APP_URL,
+  withCredentials: true
 })
 
 // 3.添加请求拦截器
-_fecth.interceptors.request.use(function (config) {
+_fetch.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
   return config;
 }, function (error) {
@@ -16,7 +17,7 @@ _fecth.interceptors.request.use(function (config) {
 });
 
 // 4.添加响应拦截器
-_fecth.interceptors.response.use(function (response) {
+_fetch.interceptors.response.use(function (response) {
   // 对响应数据做点什么:去掉一层data
   return response.data;
 }, function (error) {
@@ -25,4 +26,4 @@ _fecth.interceptors.response.use(function (response) {
 });
 
 //5.暴露axios副本
-export default _fecth 
+export default _fetch 
